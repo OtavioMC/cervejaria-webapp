@@ -3,8 +3,8 @@
     <form action="">
         <label for="nome">Nome:</label> <input type="text" name="nome" id="nome"/><br/>
         <label for="sobrenome">Sobrenome:</label> <input type="text" name="sobrenome" id="sobrenome"/><br/>
-        Sexo: <input type="radio" name="sexo" id="checkM" valeu="M"/> <label for="checkM">Masculino</label> &nbsp;&nbsp;
-        <input type="radio" name="sexo" valeu="F" id="checkF" /><label for="checkF">Feminino</label>
+        Sexo: <input type="radio" name="sexo" id="checkM" value="M"/> <label for="checkM">Masculino</label> &nbsp;&nbsp;
+        <input type="radio" name="sexo" value="F" id="checkF" /><label for="checkF">Feminino</label>
         <button type="submit">Enviar</button>
     </form>
 <%
