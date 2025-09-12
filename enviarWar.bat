@@ -13,7 +13,7 @@ if not exist "%destino%" (
 )
 
 REM Move todos os arquivos da origem para o destino
-move "%origem%\*" "%destino%"
+move "%origem%" "%destino%"
 
 REM Mensagem de confirmação
 if %errorlevel%==0 (
