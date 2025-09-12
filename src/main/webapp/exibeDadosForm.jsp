@@ -13,7 +13,7 @@
     String sexo = request.getParameter("sexo");
     if(nome!=null && sobrenome!=null && sexo!=null){
         String sexoTexto = "";
-        if(sexo=="M")
+        if(sexo.equals("M"))
             sexoTexto = "Masculino";
         else
             sexoTexto = "Feminino";
