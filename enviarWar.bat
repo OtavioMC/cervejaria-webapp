@@ -2,7 +2,7 @@
 REM Script para mover todos os arquivos da pasta target para outra pasta
 
 REM Caminho da pasta de origem
-set "origem=C:\Users\vitor\Documents\CEFET\AppCorporativas\AppCorporativaMavenWeb"
+set "origem=C:\Users\vitor\Documents\CEFET\AppCorporativas\AppCorporativaMavenWeb\target\AppCorporativaMavenWeb.war"
 
 REM Caminho da pasta de destino
 set "destino=C:\dev\pac2025\tomcat\webapps"
