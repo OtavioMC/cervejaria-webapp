@@ -12,7 +12,7 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/aula202502", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3307/aula202502", "root", "");
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
