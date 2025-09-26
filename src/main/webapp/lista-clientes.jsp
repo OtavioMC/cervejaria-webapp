@@ -13,6 +13,7 @@
             <tr>
                 <th>Nome</th>
                 <th>Idade</th>
+                <th colspan="2">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,8 @@
     <tr>
         <td><%= cliente.nome %></td>
         <td><%= cliente.idade %></td>
+        <td><a href="editar-cliente.jsp?id=<%= cliente.id %>">Editar</a></td>
+        <td><a href="excluir-cliente.jsp?id=<%= cliente.id %>">Excluir</a></td>
     </tr>
 <%
     }
