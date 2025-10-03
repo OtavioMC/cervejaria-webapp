@@ -1,7 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="br.cefetrj.model.Editora" %>
+<%@ page import="br.cefetrj.model.Livro" %>
 <%
-    br.cefetrj.model.Livro livro = (br.cefetrj.model.Livro) request.getAttribute("livro");
+   Livro livro = (br.cefetrj.model.Livro) request.getAttribute("livro");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="cadastrar-livro" method="post">
+    <form action="CadastrarLivroServlet" method="post">
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" name="titulo" value="<%= livro != null ? livro.getTitulo() : "" %>" required><br><br>
 

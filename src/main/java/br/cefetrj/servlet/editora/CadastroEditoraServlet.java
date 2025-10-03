@@ -19,7 +19,6 @@ public class CadastroEditoraServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String nome = request.getParameter("nome");
-        Integer idade = Integer.parseInt(request.getParameter("idade"));
 
         Editora editora = new Editora();
         editora.setNome(nome);
@@ -44,7 +43,7 @@ public class CadastroEditoraServlet extends HttpServlet {
 
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("livro/form-editora.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("editora/form-editora.jsp");
         rd.forward(request, response);
     }
 
