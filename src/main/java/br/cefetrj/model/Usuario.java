@@ -6,10 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "usuarios")
 public class Usuario extends Entidade {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private String nome;
     private String email;
 
@@ -19,15 +15,6 @@ public class Usuario extends Entidade {
     public Usuario(String nome, String email) {
         this.nome = nome;
         this.email = email;
-    }
-
-    // Getters e Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
