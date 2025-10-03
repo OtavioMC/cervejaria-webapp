@@ -1,4 +1,4 @@
-package br.cefetrj.servlet;
+package br.cefetrj.servlet.livro;
 
 public class DeletarLivroServlet {
 

@@ -1,5 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="br.cefetrj.model.Editora" %>
+<%
+    br.cefetrj.model.Livro livro = (br.cefetrj.model.Livro) request.getAttribute("livro");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
