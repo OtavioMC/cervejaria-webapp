@@ -1,14 +1,11 @@
 package br.cefetrj.servlet.livro;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-
-import br.cefetrj.dao.ClienteDAO;
 import br.cefetrj.dao.EditoraDAO;
 import br.cefetrj.dao.LivroDAO;
-import br.cefetrj.model.Cliente;
 import br.cefetrj.model.Editora;
+import br.cefetrj.model.Livro;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,18 +20,26 @@ public class CadastrarLivroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        String nome = request.getParameter("nome");
-        Integer idade = Integer.parseInt(request.getParameter("idade"));
+        String titulo = request.getParameter("titulo");
+        String autores = request.getParameter("autores");
+        Integer anoPublicacao = Integer.parseInt(request.getParameter("anoPublicacao"));
+        Integer idEditora = Integer.parseInt(request.getParameter("editoraId"));
 
-        Cliente cliente = new Cliente(null, nome, idade);
+        Livro livro = new Livro();
+        livro.setTitulo(titulo);
+        livro.setAutores(autores);
+        livro.setAnoPublicacao(anoPublicacao);
+
+        EditoraDAO editoraDAO = new EditoraDAO();
+        Editora editora = editoraDAO.buscarPorId(idEditora);
+        livro.setEditora(editora);
+
         // Aqui você pode adicionar o cliente a um banco de dados ou a uma lista
-        ClienteDAO dao = new ClienteDAO();
-        try {
-            dao.inserir(cliente);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        RequestDispatcher rd = request.getRequestDispatcher("cadastro-sucesso.jsp");
+        LivroDAO dao = new LivroDAO();
+
+        dao.salvar(livro, null);
+
+        RequestDispatcher rd = request.getRequestDispatcher("livro/cadastro-sucesso.jsp");
 
         rd.forward(request, response);
 
