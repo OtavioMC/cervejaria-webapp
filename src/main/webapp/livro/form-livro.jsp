@@ -13,11 +13,13 @@
 </head>
 <body>
     <form action="CadastrarLivroServlet" method="post">
+        <input type="hidden" name="id" value="<%= livro != null ? livro.getId() : '' %>">
+        <input type="hidden" name="acao" value="<%= livro != null ? 'editar' : 'cadastrar' %>">
         <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" value="<%= livro != null ? livro.getTitulo() : "" %>" required><br><br>
+        <input type="text" id="titulo" name="titulo" value="<%= livro != null ? livro.getTitulo() : '' %>" required><br><br>
 
         <label for="autores">Autores:</label>
-        <input type="text" id="autores" name="autores" value="<%= livro != null ? livro.getAutores() : "" %>" required><br><br>
+        <input type="text" id="autores" name="autores" value="<%= livro != null ? livro.getAutores() : '' %>" required><br><br>
 
 
         <label for="editora">Editora:</label>
@@ -33,6 +35,6 @@
         </select><br><br>
         <label for="anoPublicacao">Ano de Publicação:</label>
         <input type="number" id="anoPublicacao" name="anoPublicacao" value="<%= livro != null ? livro.getAnoPublicacao() : "" %>" required><br><br>
-        <button type="submit">Cadastrar Livro</button>
+        <button type="submit"><%= livro != null ? 'Editar Livro' : 'Cadastrar Livro' %></button>
 </body>
 </html>

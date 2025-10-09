@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/CadastroEditoraServlet")
-public class CadastroEditoraServlet extends HttpServlet {
+@WebServlet("/CadastrarEditoraServlet")
+public class CadastrarEditoraServlet extends HttpServlet {
     private static final long serialVersionUID = 4L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -25,10 +25,17 @@ public class CadastroEditoraServlet extends HttpServlet {
 
         // Aqui você pode adicionar o cliente a um banco de dados ou a uma lista
         EditoraDAO dao = new EditoraDAO();
+        if (request.getParameter("id") != null && request.getParameter("acao").equals("editar")) {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            editora.setId(id);
+            dao.atualizar(editora, null);
+            request.setAttribute("mensagem", "Editora atualizada com sucesso!"); // Mens
+        } else {
+            dao.salvar(editora, null);
+            request.setAttribute("mensagem", "Editora cadastrada com sucesso!");
+        }
 
-        dao.salvar(editora, null);
-
-        RequestDispatcher rd = request.getRequestDispatcher("cadastro-sucesso.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("editora/form-editora.jsp");
 
         rd.forward(request, response);
 
@@ -40,7 +47,6 @@ public class CadastroEditoraServlet extends HttpServlet {
             Integer id = Integer.parseInt(request.getParameter("id"));
             EditoraDAO editoraDAO = new EditoraDAO();
             request.setAttribute("editora", editoraDAO.buscarPorId(id));
-
         }
 
         RequestDispatcher rd = request.getRequestDispatcher("editora/form-editora.jsp");

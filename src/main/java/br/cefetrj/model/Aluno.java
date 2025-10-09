@@ -9,6 +9,7 @@ import java.util.Set;
 @DiscriminatorColumn(name = "tipo")
 public class Aluno extends Pessoa {
 
+    private String matricula;
     @ManyToMany
     @JoinTable(name = "aluno_curso", // nome da tabela intermediária
             joinColumns = @JoinColumn(name = "aluno_id"), // FK para Aluno
@@ -24,4 +25,11 @@ public class Aluno extends Pessoa {
         this.cursos = cursos;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
 }

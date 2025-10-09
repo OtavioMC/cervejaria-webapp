@@ -1,5 +1,7 @@
 package br.cefetrj.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,8 +9,8 @@ import jakarta.persistence.*;
 public abstract class Pessoa extends Entidade {
 
     private String nome;
-    private String dataNascimento;
-    private String cpf;
+    private LocalDate dataNascimento;
+    private Long cpf;
 
     // Getters e Setters
 
@@ -20,19 +22,19 @@ public abstract class Pessoa extends Entidade {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
