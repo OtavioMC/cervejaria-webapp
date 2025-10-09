@@ -4,26 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario extends Entidade {
+public class Usuario extends Pessoa {
 
-    private String nome;
     private String email;
+    private String senha;
+    private boolean ativo;
+    private String papel; // e.g., "ADMIN", "USER"
 
-    public Usuario() {
-    }
-
-    public Usuario(String nome, String email) {
-        this.nome = nome;
-        this.email = email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    // Getters e Setters
 
     public String getEmail() {
         return email;

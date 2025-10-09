@@ -26,7 +26,7 @@ public class CadastroEditoraServlet extends HttpServlet {
         // Aqui você pode adicionar o cliente a um banco de dados ou a uma lista
         EditoraDAO dao = new EditoraDAO();
 
-        dao.salvar(editora);
+        dao.salvar(editora, null);
 
         RequestDispatcher rd = request.getRequestDispatcher("cadastro-sucesso.jsp");
 

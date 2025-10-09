@@ -2,9 +2,6 @@ package br.cefetrj.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import br.cefetrj.model.Entidade;
 import br.cefetrj.model.Usuario;
 import br.cefetrj.utils.HibernateUtil;
@@ -18,10 +15,12 @@ public abstract class GenericDAO<T extends Entidade> {
         this.clazz = clazz;
     }
 
-    public void salvar(T entidade) {
+    public void salvar(T entidade, Usuario usuario) {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         try {
             entityManager.getTransaction().begin();
+            entidade.setCriadoPor(usuario);
+            entidade.setDataCriacao(java.time.LocalDate.now());
             entityManager.persist(entidade); // antes: save()
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -31,9 +30,11 @@ public abstract class GenericDAO<T extends Entidade> {
         }
     }
 
-    public void atualizar(T entidade) {
+    public void atualizar(T entidade, Usuario usuario) {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         entityManager.getTransaction().begin();
+        entidade.setAlteradoPor(usuario);
+        entidade.setDataUltimaAlteracao(java.time.LocalDate.now());
         entityManager.merge(entidade); // antes: update()
         entityManager.getTransaction().commit();
 
