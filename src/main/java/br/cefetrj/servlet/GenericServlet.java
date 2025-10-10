@@ -36,9 +36,14 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
         if (acao == null)
             acao = "listar"; // comportamento padrão
         Usuario usuario = getUsuarioLogado(request);
-        request.setAttribute("urlSubmit",
-                request.getRemoteAddr() + ":" + request.getServerPort() + request.getContextPath()
-                        + request.getServletPath());
+        String urlSubmit = request.getContextPath() + "/" + clazz.getSimpleName().toLowerCase();
+        request.setAttribute("urlSubmit", urlSubmit);
+
+        System.out.println("getLocalAddr: " + request.getLocalAddr());
+        System.out.println("ServerPort: " + request.getServerPort());
+        System.out.println("ContextPath: " + request.getContextPath());
+        System.out.println("ServletPath: " + request.getServletPath());
+        System.out.println("clazz.getSimpleName().toLowerCase(): " + "/" + clazz.getSimpleName().toLowerCase());
         if (usuario == null) {
             /**
              * Implementar redirecionamento para página de acesso negado. Faremos mais para
@@ -52,7 +57,7 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                 case "deletar":
                     int id = Integer.parseInt(request.getParameter("id"));
                     dao.deletar(id);
-                    response.sendRedirect(clazz.getSimpleName().toLowerCase() + "?acao=listar");
+                    response.sendRedirect(urlSubmit + "?acao=listar");
                     break;
 
                 case "listar":
@@ -97,7 +102,8 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
             throws IOException {
         String acao = request.getParameter("acao");
         Usuario usuario = getUsuarioLogado(request);
-
+        String urlSubmit = request.getContextPath() + "/" + clazz.getSimpleName().toLowerCase();
+        request.setAttribute("urlSubmit", urlSubmit);
         try {
             switch (acao) {
                 case "cadastrar":
@@ -109,7 +115,7 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                     dao.atualizar(entidadeAtualizada, usuario);
                     break;
             }
-            response.sendRedirect(clazz.getSimpleName().toLowerCase() + "?acao=listar");
+            response.sendRedirect(urlSubmit + "?acao=listar");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("erro.jsp");

@@ -20,7 +20,8 @@ public class AlunoServlet extends GenericServlet<Aluno> {
     @Override
     protected Aluno preencherEntidade(HttpServletRequest request) {
         Aluno aluno = new Aluno();
-        aluno.setId(request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0);
+        String id = request.getParameter("id");
+        aluno.setId(id != null && !id.isEmpty() ? Integer.parseInt(id) : null);
         aluno.setNome(request.getParameter("nome"));
         aluno.setMatricula(request.getParameter("matricula"));
 
