@@ -18,6 +18,7 @@
 </head>
 <body>
     <h2>Lista de Alunos</h2>
+    <a href="<%= request.getAttribute("urlSubmit") %>?acao=novo">Cadastrar Novo Aluno</a>
     <table>
         <tr>
             <th>ID</th>
