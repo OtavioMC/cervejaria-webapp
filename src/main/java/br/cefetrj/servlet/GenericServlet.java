@@ -56,7 +56,7 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                     List<T> lista = dao.listarTodos();
                     request.setAttribute("lista", lista);
                     try {
-                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "-lista.jsp")
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/lista.jsp")
                                 .forward(request, response);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -68,7 +68,7 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                     T entidade = dao.buscarPorId(idBuscar);
                     request.setAttribute("entidade", entidade);
                     try {
-                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "-form.jsp")
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/form.jsp")
                                 .forward(request, response);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -89,11 +89,11 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
 
         try {
             switch (acao) {
-                case "salvar":
+                case "cadastrar":
                     T entidade = preencherEntidade(request);
                     dao.salvar(entidade, usuario);
                     break;
-                case "atualizar":
+                case "editar":
                     T entidadeAtualizada = preencherEntidade(request);
                     dao.atualizar(entidadeAtualizada, usuario);
                     break;

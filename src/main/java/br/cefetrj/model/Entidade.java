@@ -2,9 +2,11 @@ package br.cefetrj.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -14,8 +16,11 @@ public class Entidade {
     private Integer id;
 
     private LocalDate dataCriacao;
+    @Column(nullable = true)
     private LocalDate dataUltimaAlteracao;
+    @ManyToOne
     private Usuario criadoPor;
+    @ManyToOne(optional = true)
     private Usuario alteradoPor;
 
     public Integer getId() {

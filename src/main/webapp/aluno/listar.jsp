@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="br.cefetrj.model.Editora" %>
+<%@ page import="br.cefetrj.model.Aluno" %>
 <%
 
-    List<Editora> editoras = (List<Editora>) request.getAttribute("editoras");
+    List<Aluno> alunos = (List<Aluno>) request.getAttribute("lista");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Listar Editoras</title>
+    <title>Listar Alunos</title>
     <style>
         table { border-collapse: collapse; width: 60%; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
@@ -22,20 +22,22 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
+            <th>Matrícula</th>
             <th colspan="2">Ações</th>
         </tr>
         <%
-            if (editoras != null && !editoras.isEmpty()) {
-                for (Editora editora : editoras) {
+            if (alunos != null && !alunos.isEmpty()) {
+                for (Aluno aluno : alunos) {
         %>
         <tr>
-            <td><%= editora.getId() %></td>
-            <td><%= editora.getNome() %></td>
+            <td><%= aluno.getId() %></td>
+            <td><%= aluno.getNome() %></td>
+            <td><%= aluno.getMatricula() %></td>
             <td>
-                <a href="CadastrarEditoraServlet?id=<%= editora.getId() %>">Editar</a>
+                <a href="/aluno?acao=deletar&id=<%= aluno.getId() %>">Editar</a>
             </td>
             <td>
-                <a href="RemoverEditoraServlet?id=<%= editora.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+                <a href="/aluno?acao=buscar&id=<%= aluno.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
             </td>
         </tr>
         <%
@@ -43,7 +45,7 @@
             } else {
         %>
         <tr>
-            <td colspan="3">Nenhuma editora encontrada.</td>
+            <td colspan="3">Nenhum aluno encontrado.</td>
         </tr>
         <%
             }
