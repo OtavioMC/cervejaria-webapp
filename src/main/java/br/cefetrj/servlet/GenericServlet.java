@@ -74,6 +74,14 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                         e.printStackTrace();
                     }
                     break;
+                case "novo":
+                    try {
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/form.jsp")
+                                .forward(request, response);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
