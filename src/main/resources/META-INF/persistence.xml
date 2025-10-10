@@ -10,13 +10,18 @@
 
         <class>br.cefetrj.model.Livro</class>
          <class>br.cefetrj.model.Editora</class>
+         <class>br.cefetrj.model.Usuario</class>
+         <class>br.cefetrj.model.Aluno</class>
+         <class>br.cefetrj.model.Curso</class>
+         <class>br.cefetrj.model.Pessoa</class>
+         <class>br.cefetrj.model.Matricula</class>
         <class>br.cefetrj.model.Entidade</class>
         <!-- adicione suas outras entidades -->
 
         <properties>
             <!-- Conexão -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/aula202502"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/aula202502?useSSL=false&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 

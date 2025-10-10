@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
-@Entity
 @MappedSuperclass
 public abstract class Pessoa extends Entidade {
 

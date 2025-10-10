@@ -45,7 +45,7 @@
             } else {
         %>
         <tr>
-            <td colspan="3">Nenhum aluno encontrado.</td>
+            <td colspan="5">Nenhum aluno encontrado.</td>
         </tr>
         <%
             }

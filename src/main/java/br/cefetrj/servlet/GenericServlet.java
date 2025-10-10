@@ -56,7 +56,7 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                     List<T> lista = dao.listarTodos();
                     request.setAttribute("lista", lista);
                     try {
-                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/lista.jsp")
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/listar.jsp")
                                 .forward(request, response);
                     } catch (Exception e) {
                         e.printStackTrace();
