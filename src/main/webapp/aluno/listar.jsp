@@ -37,7 +37,7 @@
                 <a href="<%= request.getAttribute("urlSubmit") %>?acao=buscar&id=<%= aluno.getId() %>">Editar</a>
             </td>
             <td>
-                <a href="<%= request.getAttribute("urlSubmit") %>?acao=remover&id=<%= aluno.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=deletar&id=<%= aluno.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
             </td>
         </tr>
         <%

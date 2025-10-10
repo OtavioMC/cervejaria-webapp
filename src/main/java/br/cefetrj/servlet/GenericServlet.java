@@ -39,11 +39,6 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
         String urlSubmit = request.getContextPath() + "/" + clazz.getSimpleName().toLowerCase();
         request.setAttribute("urlSubmit", urlSubmit);
 
-        System.out.println("getLocalAddr: " + request.getLocalAddr());
-        System.out.println("ServerPort: " + request.getServerPort());
-        System.out.println("ContextPath: " + request.getContextPath());
-        System.out.println("ServletPath: " + request.getServletPath());
-        System.out.println("clazz.getSimpleName().toLowerCase(): " + "/" + clazz.getSimpleName().toLowerCase());
         if (usuario == null) {
             /**
              * Implementar redirecionamento para página de acesso negado. Faremos mais para
