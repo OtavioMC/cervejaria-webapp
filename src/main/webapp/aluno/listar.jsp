@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h2>Lista de Editoras</h2>
+    <h2>Lista de Alunos</h2>
     <table>
         <tr>
             <th>ID</th>
