@@ -6,6 +6,14 @@ import br.cefetrj.utils.DateUtils;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Para acessar o formulário de cadastro:
+ * http://localhost:8080/AppCorporativaWeb/aluno?acao=novo
+ * Para listar todos os alunos:
+ * http://localhost:8080/AppCorporativaWeb/aluno?acao=listar
+ * Para editar um aluno (supondo que o ID seja 1):
+ * http://localhost:8080/AppCorporativaWeb/aluno?acao=buscar&id=1
+ */
 @WebServlet("/aluno")
 public class AlunoServlet extends GenericServlet<Aluno> {
 
