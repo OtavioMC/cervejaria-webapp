@@ -36,6 +36,9 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
         if (acao == null)
             acao = "listar"; // comportamento padrão
         Usuario usuario = getUsuarioLogado(request);
+        request.setAttribute("urlSubmit",
+                request.getRemoteAddr() + ":" + request.getServerPort() + request.getContextPath()
+                        + request.getServletPath());
         if (usuario == null) {
             /**
              * Implementar redirecionamento para página de acesso negado. Faremos mais para

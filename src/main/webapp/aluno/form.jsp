@@ -12,7 +12,7 @@
 </head>
 <body>
     <h2><% if (aluno != null) { %>Editar Aluno<% } else { %>Cadastrar Aluno<% } %></h2>
-    <form action="/aluno" method="post">
+    <form action="<%= request.getAttribute("urlSubmit") %>" method="post">
         <input type="hidden" name="id" value="<%= aluno != null ? aluno.getId() : "" %>">
         <input type="hidden" name="acao" value="<%= aluno != null ? "editar" : "cadastrar" %>">
 
