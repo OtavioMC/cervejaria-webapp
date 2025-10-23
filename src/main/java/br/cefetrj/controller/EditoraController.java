@@ -1,5 +1,7 @@
 package br.cefetrj.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,6 +44,14 @@ public class EditoraController {
     public ResponseEntity<Editora> findById(@PathVariable("id") Integer id) {
 
         return ResponseEntity.ok(editoraService.findById(id).orElse(null));
+
+    }
+
+    @GetMapping
+    @ApiOperation(value = "Listar todos", notes = "Retorna todos os registros")
+    public ResponseEntity<List<Editora>> findAll() {
+
+        return ResponseEntity.ok(editoraService.findAll());
 
     }
 }
