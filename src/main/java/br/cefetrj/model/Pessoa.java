@@ -1,18 +1,21 @@
 package br.cefetrj.model;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.*;
 
 @MappedSuperclass
 public abstract class Pessoa extends Entidade {
 
+    @Column(nullable = false, length = 200)
     private String nome;
+
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+
+    @Column(unique = true)
     private Long cpf;
 
     // Getters e Setters
-
     public String getNome() {
         return nome;
     }
@@ -36,5 +39,4 @@ public abstract class Pessoa extends Entidade {
     public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
-
 }

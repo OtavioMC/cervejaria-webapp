@@ -1,28 +1,30 @@
 package br.cefetrj.model;
 
 import java.time.LocalDate;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
 @MappedSuperclass
-public class Entidade {
+public abstract class Entidade {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "data_criacao")
     private LocalDate dataCriacao;
-    @Column(nullable = true)
+
+    @Column(name = "data_ultima_alteracao")
     private LocalDate dataUltimaAlteracao;
+
     @ManyToOne
+    @JoinColumn(name = "criado_por_id")
     private Usuario criadoPor;
-    @ManyToOne(optional = true)
+
+    @ManyToOne
+    @JoinColumn(name = "alterado_por_id")
     private Usuario alteradoPor;
 
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
