@@ -1,7 +1,6 @@
-package br.cefetrj.servlet.produto;
+package br.cefetrj.servlet;
 
 import br.cefetrj.model.Produto;
-import br.cefetrj.servlet.GenericServlet;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
