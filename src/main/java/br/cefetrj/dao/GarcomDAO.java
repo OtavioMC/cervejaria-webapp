@@ -10,10 +10,6 @@ public class GarcomDAO extends GenericDAO<Garcom> {
     public GarcomDAO() {
         super(Garcom.class);
     }
-
-    /**
-     * Busca todos os garçons ativos
-     */
     public List<Garcom> buscarAtivos() {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             return em.createQuery(
@@ -23,9 +19,6 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         }
     }
 
-    /**
-     * Busca um garçom pela matrícula
-     */
     public Garcom buscarPorMatricula(String matricula) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             List<Garcom> garcons = em.createQuery(
@@ -37,9 +30,6 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         }
     }
 
-    /**
-     * Busca garçons por turno
-     */
     public List<Garcom> buscarPorTurno(String turno) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             return em.createQuery(
@@ -50,9 +40,6 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         }
     }
 
-    /**
-     * Ativa ou desativa um garçom
-     */
     public void alterarStatus(Integer id, boolean ativo) {
         EntityManager em = HibernateUtil.getEntityManager();
         try {
@@ -73,9 +60,6 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         }
     }
 
-    /**
-     * Verifica se uma matrícula já existe
-     */
     public boolean matriculaExiste(String matricula) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             Long count = em.createQuery(
