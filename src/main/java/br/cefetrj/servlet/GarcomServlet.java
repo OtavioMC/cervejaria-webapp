@@ -2,8 +2,6 @@ package br.cefetrj.servlet;
 
 import br.cefetrj.dao.GarcomDAO;
 import br.cefetrj.model.Garcom;
-import br.cefetrj.model.Usuario;
-import br.cefetrj.servlet.GenericServlet;
 import br.cefetrj.utils.DateUtils;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;

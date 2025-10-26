@@ -119,7 +119,7 @@
 
     <div class="footer">
         <p><strong>Sistema MVC com JSP + Servlets + Hibernate</strong></p>
-        <p>Desenvolvido para CEFET-RJ - Aplicações Corporativas</p>
+        <p>CEFET-RJ - Programação de Aplicações Corporativas</p>
     </div>
 </div>
 </body>

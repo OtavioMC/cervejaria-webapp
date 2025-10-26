@@ -1,12 +1,21 @@
 package br.cefetrj.servlet;
 
+import br.cefetrj.dao.ProdutoDAO;
 import br.cefetrj.model.Produto;
+import br.cefetrj.servlet.GenericServlet;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 @WebServlet("/produto")
 public class ProdutoServlet extends GenericServlet<Produto> {
+
+    private ProdutoDAO produtoDAO = new ProdutoDAO();
+
+    public ProdutoServlet() {
+        super();
+        this.dao = produtoDAO;
+    }
 
     @Override
     protected Produto preencherEntidade(HttpServletRequest request) {
