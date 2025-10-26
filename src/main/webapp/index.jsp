@@ -82,7 +82,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>🍺 Sistema de Gerenciamento - Cervejaria</h1>
+    <h1>🍺 Sistema de Gerenciamento - Cervejaria 🍺</h1>
     <p class="subtitle">Bem-vindo ao sistema de gestão completo para sua cervejaria</p>
 
     <div class="cards">
