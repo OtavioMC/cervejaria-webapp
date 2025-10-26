@@ -21,10 +21,11 @@ public class PedidoServlet extends HttpServlet {
     private GarcomDAO garcomDAO = new GarcomDAO();
 
     protected Usuario getUsuarioLogado(HttpServletRequest request) {
-        // Simulação - em produção viria da sessão
-        Usuario usuario = new Usuario();
-        usuario.setId(1);
-        usuario.setNome("Usuário Teste");
+        // Verifica se há usuário na sessão
+        Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+        
+        // Se não houver usuário na sessão, retorna null
+        // O GenericDAO deve estar preparado para aceitar null
         return usuario;
     }
 

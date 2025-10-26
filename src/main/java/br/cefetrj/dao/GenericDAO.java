@@ -19,7 +19,10 @@ public abstract class GenericDAO<T extends Entidade> {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entidade.setCriadoPor(usuario);
+            // Só define o usuário se ele não for nulo
+            if (usuario != null) {
+                entidade.setCriadoPor(usuario);
+            }
             entidade.setDataCriacao(java.time.LocalDate.now());
             entityManager.persist(entidade); // antes: save()
             entityManager.getTransaction().commit();
@@ -33,7 +36,10 @@ public abstract class GenericDAO<T extends Entidade> {
     public void atualizar(T entidade, Usuario usuario) {
         EntityManager entityManager = HibernateUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        entidade.setAlteradoPor(usuario);
+        // Só define o usuário se ele não for nulo
+        if (usuario != null) {
+            entidade.setAlteradoPor(usuario);
+        }
         entidade.setDataUltimaAlteracao(java.time.LocalDate.now());
         entityManager.merge(entidade); // antes: update()
         entityManager.getTransaction().commit();

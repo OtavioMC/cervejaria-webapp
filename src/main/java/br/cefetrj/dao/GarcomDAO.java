@@ -11,8 +11,9 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         super(Garcom.class);
     }
 
-
-
+    /**
+     * Busca todos os garçons ativos
+     */
     public List<Garcom> buscarAtivos() {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             return em.createQuery(
@@ -22,18 +23,10 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         }
     }
 
-    public List<Garcom> buscarPorTurno(String turno) {
-        try (EntityManager em = HibernateUtil.getEntityManager()) {
-            return em.createQuery(
-                            "SELECT g FROM Garcom g WHERE g.turno = :turno AND g.ativo = true ORDER BY g.nome",
-                            Garcom.class)
-                    .setParameter("turno", turno)
-                    .getResultList();
-        }
-    }
-
+    /**
+     * Busca um garçom pela matrícula
+     */
     public Garcom buscarPorMatricula(String matricula) {
-
         try (EntityManager em = HibernateUtil.getEntityManager()) {
             List<Garcom> garcons = em.createQuery(
                             "SELECT g FROM Garcom g WHERE g.matricula = :matricula",
@@ -44,21 +37,53 @@ public class GarcomDAO extends GenericDAO<Garcom> {
         }
     }
 
-    public boolean matriculaExiste(String matricula, Integer idExcluir) {
+    /**
+     * Busca garçons por turno
+     */
+    public List<Garcom> buscarPorTurno(String turno) {
         try (EntityManager em = HibernateUtil.getEntityManager()) {
-            String query = "SELECT COUNT(g) FROM Garcom g WHERE g.matricula = :matricula";
-            if (idExcluir != null) {
-                query += " AND g.id != :id";
+            return em.createQuery(
+                            "SELECT g FROM Garcom g WHERE g.turno = :turno AND g.ativo = true ORDER BY g.nome",
+                            Garcom.class)
+                    .setParameter("turno", turno)
+                    .getResultList();
+        }
+    }
+
+    /**
+     * Ativa ou desativa um garçom
+     */
+    public void alterarStatus(Integer id, boolean ativo) {
+        EntityManager em = HibernateUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            Garcom garcom = em.find(Garcom.class, id);
+            if (garcom != null) {
+                garcom.setAtivo(ativo);
+                em.merge(garcom);
             }
-
-            var q = em.createQuery(query, Long.class)
-                    .setParameter("matricula", matricula);
-
-            if (idExcluir != null) {
-                q.setParameter("id", idExcluir);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
             }
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
 
-            return q.getSingleResult() > 0;
+    /**
+     * Verifica se uma matrícula já existe
+     */
+    public boolean matriculaExiste(String matricula) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+            Long count = em.createQuery(
+                            "SELECT COUNT(g) FROM Garcom g WHERE g.matricula = :matricula",
+                            Long.class)
+                    .setParameter("matricula", matricula)
+                    .getSingleResult();
+            return count > 0;
         }
     }
 }

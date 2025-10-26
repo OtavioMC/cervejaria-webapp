@@ -3,7 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<Produto> produtos = (List<Produto>) request.getAttribute("lista");
-    String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -19,28 +18,35 @@
         .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; font-size: 14px; }
         .btn-primary { background: #FF6B35; color: white; }
-        .btn-primary:hover { background: #e85a2a; }
+        .btn-primary:hover { background: #e55a2a; }
         .btn-danger { background: #dc3545; color: white; }
         .btn-danger:hover { background: #c82333; }
         .btn-edit { background: #ffc107; color: #333; }
         .btn-edit:hover { background: #e0a800; }
+        .btn-back { background: #6c757d; color: white; }
+        .btn-back:hover { background: #5a6268; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background: #FF6B35; color: white; font-weight: 500; }
         tr:hover { background: #f5f5f5; }
         .actions { display: flex; gap: 10px; }
-        .badge { padding: 5px 10px; border-radius: 3px; font-size: 12px; }
-        .badge-success { background: #28a745; color: white; }
-        .badge-danger { background: #dc3545; color: white; }+
+        .badge { padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: bold; }
+        .badge-cerveja { background: #FFC107; color: #333; }
+        .badge-comida { background: #4CAF50; color: white; }
+        .badge-bebida { background: #2196F3; color: white; }
+        .badge-outro { background: #6c757d; color: white; }
         .no-data { text-align: center; padding: 40px; color: #999; }
-        .price { color: #28a745; font-weight: bold; }
+        .preco { color: #2e7d32; font-weight: bold; font-size: 1.1em; }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header-actions">
-        <h2>📦 Produtos do Cardápio</h2>
-        <a href="<%= request.getAttribute("urlSubmit") %>?acao=novo" class="btn btn-primary">➕ Novo Produto</a>
+        <h2>📦 Cardápio - Produtos</h2>
+        <div>
+            <a href="<%= request.getContextPath() %>/" class="btn btn-back">🏠 Voltar</a>
+            <a href="<%= request.getAttribute("urlSubmit") %>?acao=novo" class="btn btn-primary">➕ Novo Produto</a>
+        </div>
     </div>
 
     <% if (produtos != null && !produtos.isEmpty()) { %>
@@ -49,9 +55,9 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Categoria</th>
+            <th>Descrição</th>
             <th>Preço</th>
-            <th>Status</th>
+            <th>Categoria</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -59,13 +65,26 @@
         <% for (Produto p : produtos) { %>
         <tr>
             <td>#<%= p.getId() %></td>
-            <td><%= p.getNome() %></td>
-            <td><%= p.getCategoria() %></td>
-            <td class="price">R$ <%= String.format("%.2f", p.getPreco()) %></td>
+            <td><strong><%= p.getNome() %></strong></td>
+            <td><%= p.getDescricao() != null ? p.getDescricao() : "-" %></td>
+            <td class="preco">
+                <%= p.getPreco() != null ? String.format("R$ %.2f", p.getPreco()) : "-" %>
+            </td>
             <td>
-                <span class="badge <%= p.getDisponivel() ? "badge-success" : "badge-danger" %>">
-                    <%= p.getDisponivel() ? "Disponível" : "Indisponível" %>
-                </span>
+                <% 
+                String categoria = p.getCategoria() != null ? p.getCategoria().toLowerCase() : "outro";
+                String badgeClass = "badge-outro";
+                String categoriaDisplay = p.getCategoria() != null ? p.getCategoria() : "Outro";
+                
+                if (categoria.contains("cerveja")) {
+                    badgeClass = "badge-cerveja";
+                } else if (categoria.contains("comida") || categoria.contains("petisco")) {
+                    badgeClass = "badge-comida";
+                } else if (categoria.contains("bebida") || categoria.contains("drink")) {
+                    badgeClass = "badge-bebida";
+                }
+                %>
+                <span class="badge <%= badgeClass %>"><%= categoriaDisplay %></span>
             </td>
             <td class="actions">
                 <a href="<%= request.getAttribute("urlSubmit") %>?acao=buscar&id=<%= p.getId() %>" class="btn btn-edit">✏️ Editar</a>
